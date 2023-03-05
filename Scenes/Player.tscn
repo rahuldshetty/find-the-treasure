@@ -1,0 +1,259 @@
+[gd_scene load_steps=26 format=3 uid="uid://ben8x1vaxyxg1"]
+
+[ext_resource type="SpriteFrames" uid="uid://2r1cp2tnlp1x" path="res://Animations/Player.tres" id="1_7cwel"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_vhams"]
+[ext_resource type="Texture2D" uid="uid://dlfy3260guhkt" path="res://Textures/UI/Sprite sheet for Basic Pack.png" id="3_v2bjn"]
+[ext_resource type="Texture2D" uid="uid://rytnjf67tyhu" path="res://Textures/UI/Dialouge UI/Premade dialog box small.png" id="4_65pru"]
+[ext_resource type="Texture2D" uid="uid://cv3pigjrhu8yv" path="res://Textures/UI/Dialouge UI/Emotes/Teemo Basic emote animations sprite sheet.png" id="5_vlto0"]
+[ext_resource type="FontFile" uid="uid://tysp5lssbxss" path="res://Fonts/monogram.ttf" id="6_0bimm"]
+[ext_resource type="Texture2D" uid="uid://c03r1wuup8lqe" path="res://TileSet/atlas.tres" id="7_5f7a0"]
+[ext_resource type="Texture2D" uid="uid://byh1ryjhgqles" path="res://Textures/UI/Setting menu.png" id="8_3xoru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgrdf"]
+size = Vector2(14, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f1ln"]
+atlas = ExtResource("3_v2bjn")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="Gradient" id="Gradient_6q816"]
+interpolation_mode = 1
+colors = PackedColorArray(0.376471, 0.721569, 0, 1, 0, 0.792157, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uissh"]
+gradient = SubResource("Gradient_6q816")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajhxe"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi46j"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7hwl"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uybj7"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k80mp"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkmss"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uiwm"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82phn"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ok4k"]
+atlas = ExtResource("5_vlto0")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_247wd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajhxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi46j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7hwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uybj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k80mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkmss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uiwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82phn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ok4k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm7er"]
+atlas = ExtResource("8_3xoru")
+region = Rect2(137.362, 11.1593, 108.145, 123.837)
+
+[sub_resource type="Gradient" id="Gradient_j67b3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.992982)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fwdjc"]
+gradient = SubResource("Gradient_j67b3")
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_vhams")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_7cwel")
+animation = &"idle"
+frame_progress = 0.516632
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_vgrdf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DigProgressOut" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -11.0
+offset_top = -2.0
+offset_right = 11.0
+offset_bottom = 3.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_5f1ln")
+expand_mode = 1
+metadata/_edit_group_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/DigProgressOut"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 1.0
+offset_right = 10.0
+offset_bottom = 4.0
+grow_horizontal = 2
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_uissh")
+
+[node name="ProgressTimer" type="Timer" parent="HUD/DigProgressOut"]
+one_shot = true
+
+[node name="DigResult" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 28.0
+offset_right = 76.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_65pru")
+expand_mode = 1
+
+[node name="TextureRect" type="AnimatedSprite2D" parent="HUD/DigResult"]
+position = Vector2(25.5, 20.5)
+scale = Vector2(0.65625, 0.65625)
+sprite_frames = SubResource("SpriteFrames_247wd")
+autoplay = "default"
+frame = 4
+frame_progress = 0.681373
+
+[node name="Result" type="Label" parent="HUD/DigResult"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 16.0
+offset_right = 111.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_0bimm")
+theme_override_font_sizes/font_size = 6
+text = "Found Item"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HUD/DigResult"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 28.0
+offset_right = 129.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("6_0bimm")
+theme_override_font_sizes/font_size = 4
+
+[node name="Icon" type="Sprite2D" parent="HUD/DigResult"]
+position = Vector2(57, 22)
+scale = Vector2(0.34375, 0.34375)
+texture = ExtResource("7_5f7a0")
+offset = Vector2(2, 2)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 34.0
+texture = SubResource("AtlasTexture_sm7er")
+expand_mode = 1
+
+[node name="CostLabel" type="Label" parent="CanvasLayer"]
+offset_left = 10.0
+offset_top = 17.0
+offset_right = 87.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("6_0bimm")
+text = "$100000"
+
+[node name="HP" type="Node" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer/HP"]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 22.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("6_0bimm")
+text = "HP"
+
+[node name="HP_ProgressBar" type="TextureProgressBar" parent="CanvasLayer/HP"]
+offset_left = 25.0
+offset_top = 9.0
+offset_right = 83.0
+offset_bottom = 16.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_fwdjc")
+
+[connection signal="timeout" from="HUD/DigProgressOut/ProgressTimer" to="." method="_on_progress_timer_timeout"]

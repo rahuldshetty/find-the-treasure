@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://dgrs3wjpvmtcw"]
+
+[ext_resource type="PackedScene" uid="uid://ben8x1vaxyxg1" path="res://Scenes/Player.tscn" id="1_in2n2"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_lkuju"]
+[ext_resource type="PackedScene" uid="uid://cubb0k28xjf3k" path="res://Scenes/World.tscn" id="2_be8s3"]
+[ext_resource type="AudioStream" uid="uid://bkdfovd5ha4et" path="res://Music/field_theme_2.wav" id="3_2l7bo"]
+[ext_resource type="Texture2D" uid="uid://rytnjf67tyhu" path="res://Textures/UI/Dialouge UI/Premade dialog box small.png" id="5_d81o4"]
+[ext_resource type="Texture2D" uid="uid://cv3pigjrhu8yv" path="res://Textures/UI/Dialouge UI/Emotes/Teemo Basic emote animations sprite sheet.png" id="6_iyk53"]
+[ext_resource type="FontFile" uid="uid://tysp5lssbxss" path="res://Fonts/monogram.ttf" id="7_i2hi1"]
+[ext_resource type="Texture2D" uid="uid://c03r1wuup8lqe" path="res://TileSet/atlas.tres" id="8_him7a"]
+[ext_resource type="Texture2D" uid="uid://bbnwtiu48m8jn" path="res://Textures/UI/UI Big Play Button.png" id="9_thv4x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr00j"]
+atlas = ExtResource("6_iyk53")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8i1o"]
+atlas = ExtResource("6_iyk53")
+region = Rect2(0, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6l3f"]
+atlas = ExtResource("6_iyk53")
+region = Rect2(32, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmjv1"]
+atlas = ExtResource("6_iyk53")
+region = Rect2(0, 448, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35kbi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr00j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8i1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6l3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmjv1")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ot7u"]
+atlas = ExtResource("9_thv4x")
+region = Rect2(2, 34, 92, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epx4c"]
+atlas = ExtResource("9_thv4x")
+region = Rect2(98, 34, 92, 26)
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_lkuju")
+
+[node name="Player" parent="." instance=ExtResource("1_in2n2")]
+
+[node name="World" parent="." instance=ExtResource("2_be8s3")]
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2l7bo")
+volume_db = -10.0
+autoplay = true
+
+[node name="DeathScreen" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="DeathScreen"]
+offset_left = -71.0
+offset_top = -33.0
+offset_right = 399.0
+offset_bottom = 277.0
+
+[node name="DeathPanel" type="TextureRect" parent="DeathScreen"]
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 226.0
+offset_bottom = 116.0
+texture = ExtResource("5_d81o4")
+expand_mode = 1
+
+[node name="TextureRect" type="AnimatedSprite2D" parent="DeathScreen/DeathPanel"]
+position = Vector2(29, 35)
+scale = Vector2(0.859375, 0.828125)
+sprite_frames = SubResource("SpriteFrames_35kbi")
+animation = &"death"
+autoplay = "death"
+
+[node name="MaxScore" type="Label" parent="DeathScreen/DeathPanel"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 41.0
+offset_right = 133.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_i2hi1")
+theme_override_font_sizes/font_size = 6
+text = "$ 1000000"
+
+[node name="CurrentScore" type="Label" parent="DeathScreen/DeathPanel"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 35.0
+offset_right = 133.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_i2hi1")
+theme_override_font_sizes/font_size = 6
+text = "$ 0"
+
+[node name="Result" type="Label" parent="DeathScreen/DeathPanel"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 27.0
+offset_right = 134.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_i2hi1")
+theme_override_font_sizes/font_size = 6
+text = "You are Tired! Game over!"
+
+[node name="Icon" type="Sprite2D" parent="DeathScreen/DeathPanel"]
+position = Vector2(67, 29)
+scale = Vector2(0.34375, 0.34375)
+texture = ExtResource("8_him7a")
+offset = Vector2(2, 2)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="TextureButton" type="TextureButton" parent="DeathScreen"]
+offset_left = 100.0
+offset_top = 134.0
+offset_right = 192.0
+offset_bottom = 174.0
+texture_normal = SubResource("AtlasTexture_6ot7u")
+texture_pressed = SubResource("AtlasTexture_epx4c")
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="pressed" from="DeathScreen/TextureButton" to="." method="_on_texture_button_pressed"]
